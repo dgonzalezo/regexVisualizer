@@ -1,16 +1,26 @@
 {
-  "name": "grammar",
+  "name": "test",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "dist/index.js",
+  "directories": {
+    "lib": "lib"
   },
-  "type": "module",
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "prestart": "npm run build",
+    "start": "node dist/index.js",
+    "lexer": "antlr4ts -listener -visitor -o ./lib ./regexLexer.g4",
+    "parser": "antlr4ts -listener -visitor -o ./lib ./regexParser.g4"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "antlr4": "^4.13.1-patch-1"
+    "antlr4ts": "^0.5.0-alpha.4"
+  },
+  "devDependencies": {
+    "antlr4ts-cli": "^0.5.0-alpha.4",
+    "tsc-alias": "^1.8.8",
+    "typescript": "^5.3.2"
   }
 }
