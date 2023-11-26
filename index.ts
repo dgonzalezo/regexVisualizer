@@ -15,3 +15,6 @@ console.log(treeString);
 
 const visitor = new MyRegexVisitor();
 visitor.visitRoot(result);
+
+console.log("Printing from main "+visitor.graph.nodes);
+visitor.graph.toString();
