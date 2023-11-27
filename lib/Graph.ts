@@ -7,8 +7,8 @@ export class Graph {
     this.nodes = [];
   }
 
-  addNode(value: string, quantifier?: string) {
-    const newNode = new Node(value, quantifier);
+  addNode(value: string, quantifier?: string, piece?: number, branch?: number) {
+    const newNode = new Node(value, quantifier, piece, branch);
     this.nodes.push(newNode);
     return newNode;
   }
@@ -20,13 +20,15 @@ export class Graph {
   toString() {
 
     let nodesWithSymbol = new Map();
-
+    console.log("graph LR");
     console.log("start(start)")
 
     for (let i = 0; i < this.nodes.length; i++) {
       console.log(`n${i}(${this.nodes[i].text})`);
       nodesWithSymbol.set(`n${i}`, this.nodes[i]);
     }
+
+    console.log("end1(end)");
 
     console.log("start --> n1");
 
@@ -38,20 +40,35 @@ export class Graph {
 
       let quantifier = this.nodes[i].quantifier;
       //for later use
-
-      switch (quantifier) {
-        //Quant text defined here
-        case '*': {
-          break;
+      let quantifierText = '';
+      if(quantifier!=undefined){
+        switch(quantifier){
+          case '*': {
+            quantifierText = "0-n";
+            break;
+          }
+          case '+': {
+            quantifierText = "1-n";
+            break;
+          }
+          case '?': {
+            quantifierText = "0-1";
+            break;
+          }
+          default:{
+            console.log("Another quantifier?")
+            break;
+          }
         }
       }
 
-      if (quantifier != null) {
-        //Must have an arrow to itself
-        console.log(`${currentNode} --> |quant_defined_above| ${currentNode}`)
+
+      if (quantifier !== undefined) {
+
+        console.log(`${currentNode} --> |${quantifierText}| ${currentNode}`)
       }
       if (i == keys.length - 1) {
-        console.log(`${currentNode} --> end()o como sea`);
+        console.log(`${currentNode} --> end1`);
       } else {
         console.log(`${currentNode} --> ${nextNode}`);
       }

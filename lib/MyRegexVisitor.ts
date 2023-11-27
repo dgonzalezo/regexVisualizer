@@ -1,31 +1,40 @@
+import { Graph } from './Graph';
+
 export class MyRegexVisitor implements regexParserVisitor<any>{
 
     graph = new Graph();
 
     visitRoot(ctx: RootContext): any {
-        console.log("Print root");
-        for(let i=0; i< ctx.regExp().childCount; i++){
-            this.visitRegExp(ctx.regExp());
-        }
+        this.visitRegExp(ctx.regExp());
         return 0;
     }
     visitRegExp(ctx: RegExpContext){
-        console.log(ctx.text);
+
         if (!ctx.PIPE()) {
             console.log("");
         }
+
         for(let i = 0; i<ctx.branch().length; i++){
-            this.visitBranch(ctx.branch(i));
+            let branch = this.visitBranch(ctx.branch(i));
+            branch.forEach((item) => {
+                // @ts-ignore
+                item.branch =i;
+            })
         }
+
     }
 
     visitBranch(ctx: BranchContext){
-        console.log(`Got into this branch ${ctx.text} that has ${ctx.piece().length} pieces `);
-        let pieceList = [];
 
+        let pieceList = [];
         for(let i=0; i <ctx.piece().length; i++) {
             let pieceObject = this.visitPiece(ctx.piece(i));
+
+            // @ts-ignore
+            pieceObject.piece = i;
+            pieceList.push(pieceObject);
         }
+        return pieceList;
     }
 
     visitPiece(ctx: PieceContext){
@@ -33,21 +42,33 @@ export class MyRegexVisitor implements regexParserVisitor<any>{
 
         let atomText = this.visitAtom(ctx.atom());
         let quantifierText = ctx.quantifier()?.text || undefined;
-        this.graph.addNode(atomText, quantifierText);
 
-        return { value: atomText, quantifier: quantifierText }
+        return this.graph.addNode(atomText, quantifierText);
 
     }
 
     visitAtom(ctx: AtomContext): any {
 
-        let atom = '';
-        atom = ctx.text;
+        //un char, un charClass, un (RegExp).
+
+        /*
+        //is it a (Regexp)?
+        if(ctx.LPAREN()!=null){
+            this.visitRegExp(ctx.regExp()!);
+        }*/
+
+        if(ctx.charClass()!=null){
+            console.log("Theres a charclass there");
+        }
+
+
+        let atom = ctx.text;
         return atom;
 
     }
 
-
+    visitCharClass(ctx: CharClassContext){
+    }
     visit(tree: ParseTree): any {
         return undefined;
     }
@@ -71,5 +92,11 @@ import {ErrorNode, ParseTree, RuleNode} from "antlr4ts/tree";
 import {TerminalNode} from "antlr4ts/tree/TerminalNode";
 
 
-import {AtomContext, BranchContext, PieceContext, RegExpContext, RootContext} from "@/lib/regexParser";import { Graph } from "./Graph";
-
+import {
+    AtomContext,
+    BranchContext,
+    CharClassContext,
+    PieceContext,
+    RegExpContext,
+    RootContext
+} from "@/lib/regexParser";
