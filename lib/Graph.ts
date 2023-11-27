@@ -19,18 +19,20 @@ export class Graph {
   }
   toString() {
 
+    let graphString = '';
+
     let nodesWithSymbol = new Map();
-    console.log("graph LR");
-    console.log("start(start)")
+
+    graphString += "graph LR\n";
+    graphString += "start(start)\n";
 
     for (let i = 0; i < this.nodes.length; i++) {
-      console.log(`n${i}(${this.nodes[i].text})`);
+      graphString += `n${i}(${this.nodes[i].text})\n`;
       nodesWithSymbol.set(`n${i}`, this.nodes[i]);
     }
 
-    console.log("end1(end)");
-
-    console.log("start --> n0");
+    graphString  += "end1(end)\n";
+    graphString += "start --> n0\n";
 
     let keys = Array.from(nodesWithSymbol.keys());
 
@@ -63,15 +65,14 @@ export class Graph {
       }
 
       if (quantifier !== undefined) {
-
-        console.log(`${currentNode} --> |${quantifierText}| ${currentNode}`)
+        graphString += `${currentNode} --> |${quantifierText}| ${currentNode}\n`;
       }
       if (i == keys.length - 1) {
-        console.log(`${currentNode} --> end1`);
+        graphString += `${currentNode} --> end1\n`;
       } else {
-        console.log(`${currentNode} --> ${nextNode}`);
+        graphString += `${currentNode} --> ${nextNode}\n`;
       }
-
     }
+    return graphString;
   }
 }

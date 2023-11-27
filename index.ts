@@ -20,4 +20,30 @@ console.log(treeString);
 const visitor = new MyRegexVisitor();
 
 visitor.visitRoot(result);
-visitor.graph.toString();
+
+let mermaidString = visitor.graph.toString();
+console.log(mermaidString);
+
+
+// Server
+import express from 'express';
+import bodyParser from 'body-parser';
+
+const app = express();
+
+app.use(express.static(__dirname + '/'));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+app.set('views', __dirname);
+app.get('/', function(req, res) {
+    res.render('index.ejs', { mermaidString: mermaidString });
+});
+
+
+
+const PORT = 3000;
+app.listen(PORT, () =>{
+    console.log("Serving");
+})
