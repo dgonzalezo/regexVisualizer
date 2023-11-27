@@ -4,7 +4,7 @@ import { regexParser } from './lib/regexParser';
 
 import { MyRegexVisitor} from "./lib/MyRegexVisitor";
 
-let pipeExample = "(w3)?a*|b)";
+let pipeExample = "(w3)?a*b";
 let oldExample = "(w3)*(Sa)?4";
 
 let inputStream = new ANTLRInputStream(pipeExample);

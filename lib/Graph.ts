@@ -30,7 +30,7 @@ export class Graph {
 
     console.log("end1(end)");
 
-    console.log("start --> n1");
+    console.log("start --> n0");
 
     let keys = Array.from(nodesWithSymbol.keys());
 
@@ -61,7 +61,6 @@ export class Graph {
           }
         }
       }
-
 
       if (quantifier !== undefined) {
 

@@ -6,22 +6,25 @@ export class MyRegexVisitor implements regexParserVisitor<any>{
 
     visitRoot(ctx: RootContext): any {
         this.visitRegExp(ctx.regExp());
-        return 0;
     }
     visitRegExp(ctx: RegExpContext){
 
-        if (!ctx.PIPE()) {
-            console.log("");
-        }
+        let branches = [];
 
         for(let i = 0; i<ctx.branch().length; i++){
             let branch = this.visitBranch(ctx.branch(i));
+
+            for(let j=0; j<branch.length; j++){
+                // @ts-ignore
+                console.log(branch[j].text);
+            }
             branch.forEach((item) => {
                 // @ts-ignore
                 item.branch =i;
-            })
+            });
+            branches.push(branch);
         }
-
+        return branches;
     }
 
     visitBranch(ctx: BranchContext){
@@ -51,19 +54,14 @@ export class MyRegexVisitor implements regexParserVisitor<any>{
 
         //un char, un charClass, un (RegExp).
 
-        /*
+
         //is it a (Regexp)?
         if(ctx.LPAREN()!=null){
-            this.visitRegExp(ctx.regExp()!);
-        }*/
-
-        if(ctx.charClass()!=null){
-            console.log("Theres a charclass there");
+            //this.visitRegExp(ctx.regExp()!)
         }
-
-
         let atom = ctx.text;
         return atom;
+
 
     }
 
