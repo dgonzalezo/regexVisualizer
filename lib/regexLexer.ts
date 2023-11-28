@@ -1,21 +1,17 @@
-// Generated from ./regexLexer.g4 by ANTLR 4.9.0-SNAPSHOT
-
-
-import { ATN } from "antlr4ts/atn/ATN";
-import { ATNDeserializer } from "antlr4ts/atn/ATNDeserializer";
-import { CharStream } from "antlr4ts/CharStream";
-import { Lexer } from "antlr4ts/Lexer";
-import { LexerATNSimulator } from "antlr4ts/atn/LexerATNSimulator";
-import { NotNull } from "antlr4ts/Decorators";
-import { Override } from "antlr4ts/Decorators";
-import { RuleContext } from "antlr4ts/RuleContext";
-import { Vocabulary } from "antlr4ts/Vocabulary";
-import { VocabularyImpl } from "antlr4ts/VocabularyImpl";
-
-import * as Utils from "antlr4ts/misc/Utils";
-
-
-export class regexLexer extends Lexer {
+// Generated from regexLexer.g4 by ANTLR 4.13.1
+// noinspection ES6UnusedImports,JSUnusedGlobalSymbols,JSUnusedLocalSymbols
+import {
+	ATN,
+	ATNDeserializer,
+	CharStream,
+	DecisionState, DFA,
+	Lexer,
+	LexerATNSimulator,
+	RuleContext,
+	PredictionContextCache,
+	Token
+} from "antlr4";
+export default class regexLexer extends Lexer {
 	public static readonly LPAREN = 1;
 	public static readonly RPAREN = 2;
 	public static readonly PIPE = 3;
@@ -53,19 +49,61 @@ export class regexLexer extends Lexer {
 	public static readonly EndCharGroup = 35;
 	public static readonly DASH = 36;
 	public static readonly XmlChar = 37;
+	public static readonly EOF = Token.EOF;
 	public static readonly QUANTITY = 1;
 	public static readonly CATEGORY = 2;
 	public static readonly CHARGROUP = 3;
 
-	// tslint:disable:no-trailing-whitespace
-	public static readonly channelNames: string[] = [
-		"DEFAULT_TOKEN_CHANNEL", "HIDDEN",
-	];
-
-	// tslint:disable:no-trailing-whitespace
-	public static readonly modeNames: string[] = [
-		"DEFAULT_MODE", "QUANTITY", "CATEGORY", "CHARGROUP",
-	];
+	public static readonly channelNames: string[] = [ "DEFAULT_TOKEN_CHANNEL", "HIDDEN" ];
+	public static readonly literalNames: (string | null)[] = [ null, "'('", 
+                                                            "')'", "'|'", 
+                                                            "'+'", "'?'", 
+                                                            "'*'", "'.'", 
+                                                            null, "'{'", 
+                                                            null, null, 
+                                                            null, null, 
+                                                            null, null, 
+                                                            null, null, 
+                                                            "','", null, 
+                                                            null, null, 
+                                                            null, null, 
+                                                            null, null, 
+                                                            null, null, 
+                                                            null, null, 
+                                                            null, null, 
+                                                            null, null, 
+                                                            null, "']'", 
+                                                            "'-'" ];
+	public static readonly symbolicNames: (string | null)[] = [ null, "LPAREN", 
+                                                             "RPAREN", "PIPE", 
+                                                             "PLUS", "QUESTION", 
+                                                             "STAR", "WildcardEsc", 
+                                                             "Char", "StartQuantity", 
+                                                             "SingleCharEsc", 
+                                                             "MultiCharEsc", 
+                                                             "CatEsc", "ComplEsc", 
+                                                             "NegCharGroup", 
+                                                             "PosCharGroup", 
+                                                             "EndQuantity", 
+                                                             "QuantExact", 
+                                                             "COMMA", "EndCategory", 
+                                                             "IsCategory", 
+                                                             "Letters", 
+                                                             "Marks", "Numbers", 
+                                                             "Punctuation", 
+                                                             "Separators", 
+                                                             "Symbols", 
+                                                             "Others", "IsBlock", 
+                                                             "NestedSingleCharEsc", 
+                                                             "NestedMultiCharEsc", 
+                                                             "NestedCatEsc", 
+                                                             "NestedComplEsc", 
+                                                             "NestedNegCharGroup", 
+                                                             "NestedPosCharGroup", 
+                                                             "EndCharGroup", 
+                                                             "DASH", "XmlChar" ];
+	public static readonly modeNames: string[] = [ "DEFAULT_MODE", "QUANTITY", 
+                                                "CATEGORY", "CHARGROUP", ];
 
 	public static readonly ruleNames: string[] = [
 		"LPAREN", "RPAREN", "PIPE", "PLUS", "QUESTION", "STAR", "WildcardEsc", 
@@ -78,165 +116,113 @@ export class regexLexer extends Lexer {
 		"SINGLE_ESC",
 	];
 
-	private static readonly _LITERAL_NAMES: Array<string | undefined> = [
-		undefined, "'('", "')'", "'|'", "'+'", "'?'", "'*'", "'.'", undefined, 
-		"'{'", undefined, undefined, undefined, undefined, undefined, undefined, 
-		undefined, undefined, "','", undefined, undefined, undefined, undefined, 
-		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
-		undefined, undefined, undefined, undefined, undefined, "']'", "'-'",
-	];
-	private static readonly _SYMBOLIC_NAMES: Array<string | undefined> = [
-		undefined, "LPAREN", "RPAREN", "PIPE", "PLUS", "QUESTION", "STAR", "WildcardEsc", 
-		"Char", "StartQuantity", "SingleCharEsc", "MultiCharEsc", "CatEsc", "ComplEsc", 
-		"NegCharGroup", "PosCharGroup", "EndQuantity", "QuantExact", "COMMA", 
-		"EndCategory", "IsCategory", "Letters", "Marks", "Numbers", "Punctuation", 
-		"Separators", "Symbols", "Others", "IsBlock", "NestedSingleCharEsc", "NestedMultiCharEsc", 
-		"NestedCatEsc", "NestedComplEsc", "NestedNegCharGroup", "NestedPosCharGroup", 
-		"EndCharGroup", "DASH", "XmlChar",
-	];
-	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(regexLexer._LITERAL_NAMES, regexLexer._SYMBOLIC_NAMES, []);
-
-	// @Override
-	// @NotNull
-	public get vocabulary(): Vocabulary {
-		return regexLexer.VOCABULARY;
-	}
-	// tslint:enable:no-trailing-whitespace
-
 
 	constructor(input: CharStream) {
 		super(input);
-		this._interp = new LexerATNSimulator(regexLexer._ATN, this);
+		this._interp = new LexerATNSimulator(this, regexLexer._ATN, regexLexer.DecisionsToDFA, new PredictionContextCache());
 	}
 
-	// @Override
 	public get grammarFileName(): string { return "regexLexer.g4"; }
 
-	// @Override
+	public get literalNames(): (string | null)[] { return regexLexer.literalNames; }
+	public get symbolicNames(): (string | null)[] { return regexLexer.symbolicNames; }
 	public get ruleNames(): string[] { return regexLexer.ruleNames; }
 
-	// @Override
-	public get serializedATN(): string { return regexLexer._serializedATN; }
+	public get serializedATN(): number[] { return regexLexer._serializedATN; }
 
-	// @Override
 	public get channelNames(): string[] { return regexLexer.channelNames; }
 
-	// @Override
 	public get modeNames(): string[] { return regexLexer.modeNames; }
 
-	public static readonly _serializedATN: string =
-		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x02\'\xE8\b\x01\b" +
-		"\x01\b\x01\b\x01\x04\x02\t\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05" +
-		"\x04\x06\t\x06\x04\x07\t\x07\x04\b\t\b\x04\t\t\t\x04\n\t\n\x04\v\t\v\x04" +
-		"\f\t\f\x04\r\t\r\x04\x0E\t\x0E\x04\x0F\t\x0F\x04\x10\t\x10\x04\x11\t\x11" +
-		"\x04\x12\t\x12\x04\x13\t\x13\x04\x14\t\x14\x04\x15\t\x15\x04\x16\t\x16" +
-		"\x04\x17\t\x17\x04\x18\t\x18\x04\x19\t\x19\x04\x1A\t\x1A\x04\x1B\t\x1B" +
-		"\x04\x1C\t\x1C\x04\x1D\t\x1D\x04\x1E\t\x1E\x04\x1F\t\x1F\x04 \t \x04!" +
-		"\t!\x04\"\t\"\x04#\t#\x04$\t$\x04%\t%\x04&\t&\x04\'\t\'\x04(\t(\x04)\t" +
-		")\x04*\t*\x03\x02\x03\x02\x03\x03\x03\x03\x03\x04\x03\x04\x03\x05\x03" +
-		"\x05\x03\x06\x03\x06\x03\x07\x03\x07\x03\b\x03\b\x03\t\x03\t\x03\n\x03" +
-		"\n\x03\n\x03\n\x03\v\x03\v\x03\f\x03\f\x03\r\x03\r\x03\r\x03\r\x03\x0E" +
-		"\x03\x0E\x03\x0E\x03\x0E\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x10" +
-		"\x03\x10\x03\x10\x03\x10\x03\x11\x03\x11\x03\x11\x03\x11\x03\x12\x06\x12" +
-		"\x87\n\x12\r\x12\x0E\x12\x88\x03\x13\x03\x13\x03\x14\x03\x14\x03\x14\x03" +
-		"\x14\x03\x15\x03\x15\x03\x15\x03\x15\x03\x15\x03\x15\x03\x15\x05\x15\x98" +
-		"\n\x15\x03\x16\x03\x16\x05\x16\x9C\n\x16\x03\x17\x03\x17\x05\x17\xA0\n" +
-		"\x17\x03\x18\x03\x18\x05\x18\xA4\n\x18\x03\x19\x03\x19\x05\x19\xA8\n\x19" +
-		"\x03\x1A\x03\x1A\x05\x1A\xAC\n\x1A\x03\x1B\x03\x1B\x05\x1B\xB0\n\x1B\x03" +
-		"\x1C\x03\x1C\x05\x1C\xB4\n\x1C\x03\x1D\x03\x1D\x03\x1D\x03\x1D\x06\x1D" +
-		"\xBA\n\x1D\r\x1D\x0E\x1D\xBB\x03\x1E\x03\x1E\x03\x1F\x03\x1F\x03 \x03" +
-		" \x03 \x03 \x03!\x03!\x03!\x03!\x03\"\x03\"\x03\"\x03\"\x03\"\x03#\x03" +
-		"#\x03#\x03#\x03$\x03$\x03$\x03$\x03%\x03%\x03&\x03&\x03\'\x03\'\x03\'" +
-		"\x03\'\x03(\x03(\x03(\x03(\x03)\x03)\x03)\x03*\x03*\x03*\x02\x02\x02+" +
-		"\x06\x02\x03\b\x02\x04\n\x02\x05\f\x02\x06\x0E\x02\x07\x10\x02\b\x12\x02" +
-		"\t\x14\x02\n\x16\x02\v\x18\x02\f\x1A\x02\r\x1C\x02\x0E\x1E\x02\x0F \x02" +
-		"\x10\"\x02\x11$\x02\x12&\x02\x13(\x02\x14*\x02\x15,\x02\x16.\x02\x170" +
-		"\x02\x182\x02\x194\x02\x1A6\x02\x1B8\x02\x1C:\x02\x1D<\x02\x1E>\x02\x1F" +
-		"@\x02 B\x02!D\x02\"F\x02#H\x02$J\x02%L\x02&N\x02\'P\x02\x02R\x02\x02T" +
-		"\x02\x02V\x02\x02\x06\x02\x03\x04\x05\x0F\x07\x02*-00AA]_~~\x03\x022;" +
-		"\x05\x02noqqvw\x05\x02eeggpp\x05\x02ffnnqq\x06\x02ehkkqquu\x05\x02nnr" +
-		"ruu\x06\x02eemmooqq\x05\x02eehhpq\x06\x02//2;C\\c|\x05\x02//]]__\n\x02" +
-		"EFKKUUYYefkkuuyy\n\x02*-/0AA]`ppttvv}\x7F\x02\xEF\x02\x06\x03\x02\x02" +
-		"\x02\x02\b\x03\x02\x02\x02\x02\n\x03\x02\x02\x02\x02\f\x03\x02\x02\x02" +
-		"\x02\x0E\x03\x02\x02\x02\x02\x10\x03\x02\x02\x02\x02\x12\x03\x02\x02\x02" +
-		"\x02\x14\x03\x02\x02\x02\x02\x16\x03\x02\x02\x02\x02\x18\x03\x02\x02\x02" +
-		"\x02\x1A\x03\x02\x02\x02\x02\x1C\x03\x02\x02\x02\x02\x1E\x03\x02\x02\x02" +
-		"\x02 \x03\x02\x02\x02\x02\"\x03\x02\x02\x02\x03$\x03\x02\x02\x02\x03&" +
-		"\x03\x02\x02\x02\x03(\x03\x02\x02\x02\x04*\x03\x02\x02\x02\x04,\x03\x02" +
-		"\x02\x02\x04.\x03\x02\x02\x02\x040\x03\x02\x02\x02\x042\x03\x02\x02\x02" +
-		"\x044\x03\x02\x02\x02\x046\x03\x02\x02\x02\x048\x03\x02\x02\x02\x04:\x03" +
-		"\x02\x02\x02\x04<\x03\x02\x02\x02\x05>\x03\x02\x02\x02\x05@\x03\x02\x02" +
-		"\x02\x05B\x03\x02\x02\x02\x05D\x03\x02\x02\x02\x05F\x03\x02\x02\x02\x05" +
-		"H\x03\x02\x02\x02\x05J\x03\x02\x02\x02\x05L\x03\x02\x02\x02\x05N\x03\x02" +
-		"\x02\x02\x06X\x03\x02\x02\x02\bZ\x03\x02\x02\x02\n\\\x03\x02\x02\x02\f" +
-		"^\x03\x02\x02\x02\x0E`\x03\x02\x02\x02\x10b\x03\x02\x02\x02\x12d\x03\x02" +
-		"\x02\x02\x14f\x03\x02\x02\x02\x16h\x03\x02\x02\x02\x18l\x03\x02\x02\x02" +
-		"\x1An\x03\x02\x02\x02\x1Cp\x03\x02\x02\x02\x1Et\x03\x02\x02\x02 x\x03" +
-		"\x02\x02\x02\"}\x03\x02\x02\x02$\x81\x03\x02\x02\x02&\x86\x03\x02\x02" +
-		"\x02(\x8A\x03\x02\x02\x02*\x8C\x03\x02\x02\x02,\x97\x03\x02\x02\x02.\x99" +
-		"\x03\x02\x02\x020\x9D\x03\x02\x02\x022\xA1\x03\x02\x02\x024\xA5\x03\x02" +
-		"\x02\x026\xA9\x03\x02\x02\x028\xAD\x03\x02\x02\x02:\xB1\x03\x02\x02\x02" +
-		"<\xB5\x03\x02\x02\x02>\xBD\x03\x02\x02\x02@\xBF\x03\x02\x02\x02B\xC1\x03" +
-		"\x02\x02\x02D\xC5\x03\x02\x02\x02F\xC9\x03\x02\x02\x02H\xCE\x03\x02\x02" +
-		"\x02J\xD2\x03\x02\x02\x02L\xD6\x03\x02\x02\x02N\xD8\x03\x02\x02\x02P\xDA" +
-		"\x03\x02\x02\x02R\xDE\x03\x02\x02\x02T\xE2\x03\x02\x02\x02V\xE5\x03\x02" +
-		"\x02\x02XY\x07*\x02\x02Y\x07\x03\x02\x02\x02Z[\x07+\x02\x02[\t\x03\x02" +
-		"\x02\x02\\]\x07~\x02\x02]\v\x03\x02\x02\x02^_\x07-\x02\x02_\r\x03\x02" +
-		"\x02\x02`a\x07A\x02\x02a\x0F\x03\x02\x02\x02bc\x07,\x02\x02c\x11\x03\x02" +
-		"\x02\x02de\x070\x02\x02e\x13\x03\x02\x02\x02fg\n\x02\x02\x02g\x15\x03" +
-		"\x02\x02\x02hi\x07}\x02\x02ij\x03\x02\x02\x02jk\b\n\x02\x02k\x17\x03\x02" +
-		"\x02\x02lm\x05V*\x02m\x19\x03\x02\x02\x02no\x05T)\x02o\x1B\x03\x02\x02" +
-		"\x02pq\x05P\'\x02qr\x03\x02\x02\x02rs\b\r\x03\x02s\x1D\x03\x02\x02\x02" +
-		"tu\x05R(\x02uv\x03\x02\x02\x02vw\b\x0E\x03\x02w\x1F\x03\x02\x02\x02xy" +
-		"\x07]\x02\x02yz\x07`\x02\x02z{\x03\x02\x02\x02{|\b\x0F\x04\x02|!\x03\x02" +
-		"\x02\x02}~\x07]\x02\x02~\x7F\x03\x02\x02\x02\x7F\x80\b\x10\x04\x02\x80" +
-		"#\x03\x02\x02\x02\x81\x82\x07\x7F\x02\x02\x82\x83\x03\x02\x02\x02\x83" +
-		"\x84\b\x11\x05\x02\x84%\x03\x02\x02\x02\x85\x87\t\x03\x02\x02\x86\x85" +
-		"\x03\x02\x02\x02\x87\x88\x03\x02\x02\x02\x88\x86\x03\x02\x02\x02\x88\x89" +
-		"\x03\x02\x02\x02\x89\'\x03\x02\x02\x02\x8A\x8B\x07.\x02\x02\x8B)\x03\x02" +
-		"\x02\x02\x8C\x8D\x07\x7F\x02\x02\x8D\x8E\x03\x02\x02\x02\x8E\x8F\b\x14" +
-		"\x05\x02\x8F+\x03\x02\x02\x02\x90\x98\x05.\x16\x02\x91\x98\x050\x17\x02" +
-		"\x92\x98\x052\x18\x02\x93\x98\x054\x19\x02\x94\x98\x056\x1A\x02\x95\x98" +
-		"\x058\x1B\x02\x96\x98\x05:\x1C\x02\x97\x90\x03\x02\x02\x02\x97\x91\x03" +
-		"\x02\x02\x02\x97\x92\x03\x02\x02\x02\x97\x93\x03\x02\x02\x02\x97\x94\x03" +
-		"\x02\x02\x02\x97\x95\x03\x02\x02\x02\x97\x96\x03\x02\x02\x02\x98-\x03" +
-		"\x02\x02\x02\x99\x9B\x07N\x02\x02\x9A\x9C\t\x04\x02\x02\x9B\x9A\x03\x02" +
-		"\x02\x02\x9B\x9C\x03\x02\x02\x02\x9C/\x03\x02\x02\x02\x9D\x9F\x07O\x02" +
-		"\x02\x9E\xA0\t\x05\x02\x02\x9F\x9E\x03\x02\x02\x02\x9F\xA0\x03\x02\x02" +
-		"\x02\xA01\x03\x02\x02\x02\xA1\xA3\x07P\x02\x02\xA2\xA4\t\x06\x02\x02\xA3" +
-		"\xA2\x03\x02\x02\x02\xA3\xA4\x03\x02\x02\x02\xA43\x03\x02\x02\x02\xA5" +
-		"\xA7\x07R\x02\x02\xA6\xA8\t\x07\x02\x02\xA7\xA6\x03\x02\x02\x02\xA7\xA8" +
-		"\x03\x02\x02\x02\xA85\x03\x02\x02\x02\xA9\xAB\x07\\\x02\x02\xAA\xAC\t" +
-		"\b\x02\x02\xAB\xAA\x03\x02\x02\x02\xAB\xAC\x03\x02\x02\x02\xAC7\x03\x02" +
-		"\x02\x02\xAD\xAF\x07U\x02\x02\xAE\xB0\t\t\x02\x02\xAF\xAE\x03\x02\x02" +
-		"\x02\xAF\xB0\x03\x02\x02\x02\xB09\x03\x02\x02\x02\xB1\xB3\x07E\x02\x02" +
-		"\xB2\xB4\t\n\x02\x02\xB3\xB2\x03\x02\x02\x02\xB3\xB4\x03\x02\x02\x02\xB4" +
-		";\x03\x02\x02\x02\xB5\xB6\x07K\x02\x02\xB6\xB7\x07u\x02\x02\xB7\xB9\x03" +
-		"\x02\x02\x02\xB8\xBA\t\v\x02\x02\xB9\xB8\x03\x02\x02\x02\xBA\xBB\x03\x02" +
-		"\x02\x02\xBB\xB9\x03\x02\x02\x02\xBB\xBC\x03\x02\x02\x02\xBC=\x03\x02" +
-		"\x02\x02\xBD\xBE\x05V*\x02\xBE?\x03\x02\x02\x02\xBF\xC0\x05T)\x02\xC0" +
-		"A\x03\x02\x02\x02\xC1\xC2\x05P\'\x02\xC2\xC3\x03\x02\x02\x02\xC3\xC4\b" +
-		" \x03\x02\xC4C\x03\x02\x02\x02\xC5\xC6\x05R(\x02\xC6\xC7\x03\x02\x02\x02" +
-		"\xC7\xC8\b!\x03\x02\xC8E\x03\x02\x02\x02\xC9\xCA\x07]\x02\x02\xCA\xCB" +
-		"\x07`\x02\x02\xCB\xCC\x03\x02\x02\x02\xCC\xCD\b\"\x04\x02\xCDG\x03\x02" +
-		"\x02\x02\xCE\xCF\x07]\x02\x02\xCF\xD0\x03\x02\x02\x02\xD0\xD1\b#\x04\x02" +
-		"\xD1I\x03\x02\x02\x02\xD2\xD3\x07_\x02\x02\xD3\xD4\x03\x02\x02\x02\xD4" +
-		"\xD5\b$\x05\x02\xD5K\x03\x02\x02\x02\xD6\xD7\x07/\x02\x02\xD7M\x03\x02" +
-		"\x02\x02\xD8\xD9\n\f\x02\x02\xD9O\x03\x02\x02\x02\xDA\xDB\x07^\x02\x02" +
-		"\xDB\xDC\x07r\x02\x02\xDC\xDD\x07}\x02\x02\xDDQ\x03\x02\x02\x02\xDE\xDF" +
-		"\x07^\x02\x02\xDF\xE0\x07R\x02\x02\xE0\xE1\x07}\x02\x02\xE1S\x03\x02\x02" +
-		"\x02\xE2\xE3\x07^\x02\x02\xE3\xE4\t\r\x02\x02\xE4U\x03\x02\x02\x02\xE5" +
-		"\xE6\x07^\x02\x02\xE6\xE7\t\x0E\x02\x02\xE7W\x03\x02\x02\x02\x11\x02\x03" +
-		"\x04\x05\x88\x97\x9B\x9F\xA3\xA7\xAB\xAF\xB3\xB9\xBB\x06\x07\x03\x02\x07" +
-		"\x04\x02\x07\x05\x02\x06\x02\x02";
-	public static __ATN: ATN;
+	public static readonly _serializedATN: number[] = [4,0,37,230,6,-1,6,-1,
+	6,-1,6,-1,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,7,
+	7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,14,2,15,
+	7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,7,20,2,21,7,21,2,22,7,
+	22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,2,27,7,27,2,28,7,28,2,29,7,29,
+	2,30,7,30,2,31,7,31,2,32,7,32,2,33,7,33,2,34,7,34,2,35,7,35,2,36,7,36,2,
+	37,7,37,2,38,7,38,2,39,7,39,2,40,7,40,1,0,1,0,1,1,1,1,1,2,1,2,1,3,1,3,1,
+	4,1,4,1,5,1,5,1,6,1,6,1,7,1,7,1,8,1,8,1,8,1,8,1,9,1,9,1,10,1,10,1,11,1,
+	11,1,11,1,11,1,12,1,12,1,12,1,12,1,13,1,13,1,13,1,13,1,13,1,14,1,14,1,14,
+	1,14,1,15,1,15,1,15,1,15,1,16,4,16,133,8,16,11,16,12,16,134,1,17,1,17,1,
+	18,1,18,1,18,1,18,1,19,1,19,1,19,1,19,1,19,1,19,1,19,3,19,150,8,19,1,20,
+	1,20,3,20,154,8,20,1,21,1,21,3,21,158,8,21,1,22,1,22,3,22,162,8,22,1,23,
+	1,23,3,23,166,8,23,1,24,1,24,3,24,170,8,24,1,25,1,25,3,25,174,8,25,1,26,
+	1,26,3,26,178,8,26,1,27,1,27,1,27,1,27,4,27,184,8,27,11,27,12,27,185,1,
+	28,1,28,1,29,1,29,1,30,1,30,1,30,1,30,1,31,1,31,1,31,1,31,1,32,1,32,1,32,
+	1,32,1,32,1,33,1,33,1,33,1,33,1,34,1,34,1,34,1,34,1,35,1,35,1,36,1,36,1,
+	37,1,37,1,37,1,37,1,38,1,38,1,38,1,38,1,39,1,39,1,39,1,40,1,40,1,40,0,0,
+	41,4,1,6,2,8,3,10,4,12,5,14,6,16,7,18,8,20,9,22,10,24,11,26,12,28,13,30,
+	14,32,15,34,16,36,17,38,18,40,19,42,20,44,21,46,22,48,23,50,24,52,25,54,
+	26,56,27,58,28,60,29,62,30,64,31,66,32,68,33,70,34,72,35,74,36,76,37,78,
+	0,80,0,82,0,84,0,4,0,1,2,3,13,5,0,40,43,46,46,63,63,91,93,124,124,1,0,48,
+	57,3,0,108,109,111,111,116,117,3,0,99,99,101,101,110,110,3,0,100,100,108,
+	108,111,111,4,0,99,102,105,105,111,111,115,115,3,0,108,108,112,112,115,
+	115,4,0,99,99,107,107,109,109,111,111,3,0,99,99,102,102,110,111,4,0,45,
+	45,48,57,65,90,97,122,3,0,45,45,91,91,93,93,8,0,67,68,73,73,83,83,87,87,
+	99,100,105,105,115,115,119,119,8,0,40,43,45,46,63,63,91,94,110,110,114,
+	114,116,116,123,125,237,0,4,1,0,0,0,0,6,1,0,0,0,0,8,1,0,0,0,0,10,1,0,0,
+	0,0,12,1,0,0,0,0,14,1,0,0,0,0,16,1,0,0,0,0,18,1,0,0,0,0,20,1,0,0,0,0,22,
+	1,0,0,0,0,24,1,0,0,0,0,26,1,0,0,0,0,28,1,0,0,0,0,30,1,0,0,0,0,32,1,0,0,
+	0,1,34,1,0,0,0,1,36,1,0,0,0,1,38,1,0,0,0,2,40,1,0,0,0,2,42,1,0,0,0,2,44,
+	1,0,0,0,2,46,1,0,0,0,2,48,1,0,0,0,2,50,1,0,0,0,2,52,1,0,0,0,2,54,1,0,0,
+	0,2,56,1,0,0,0,2,58,1,0,0,0,3,60,1,0,0,0,3,62,1,0,0,0,3,64,1,0,0,0,3,66,
+	1,0,0,0,3,68,1,0,0,0,3,70,1,0,0,0,3,72,1,0,0,0,3,74,1,0,0,0,3,76,1,0,0,
+	0,4,86,1,0,0,0,6,88,1,0,0,0,8,90,1,0,0,0,10,92,1,0,0,0,12,94,1,0,0,0,14,
+	96,1,0,0,0,16,98,1,0,0,0,18,100,1,0,0,0,20,102,1,0,0,0,22,106,1,0,0,0,24,
+	108,1,0,0,0,26,110,1,0,0,0,28,114,1,0,0,0,30,118,1,0,0,0,32,123,1,0,0,0,
+	34,127,1,0,0,0,36,132,1,0,0,0,38,136,1,0,0,0,40,138,1,0,0,0,42,149,1,0,
+	0,0,44,151,1,0,0,0,46,155,1,0,0,0,48,159,1,0,0,0,50,163,1,0,0,0,52,167,
+	1,0,0,0,54,171,1,0,0,0,56,175,1,0,0,0,58,179,1,0,0,0,60,187,1,0,0,0,62,
+	189,1,0,0,0,64,191,1,0,0,0,66,195,1,0,0,0,68,199,1,0,0,0,70,204,1,0,0,0,
+	72,208,1,0,0,0,74,212,1,0,0,0,76,214,1,0,0,0,78,216,1,0,0,0,80,220,1,0,
+	0,0,82,224,1,0,0,0,84,227,1,0,0,0,86,87,5,40,0,0,87,5,1,0,0,0,88,89,5,41,
+	0,0,89,7,1,0,0,0,90,91,5,124,0,0,91,9,1,0,0,0,92,93,5,43,0,0,93,11,1,0,
+	0,0,94,95,5,63,0,0,95,13,1,0,0,0,96,97,5,42,0,0,97,15,1,0,0,0,98,99,5,46,
+	0,0,99,17,1,0,0,0,100,101,8,0,0,0,101,19,1,0,0,0,102,103,5,123,0,0,103,
+	104,1,0,0,0,104,105,6,8,0,0,105,21,1,0,0,0,106,107,3,84,40,0,107,23,1,0,
+	0,0,108,109,3,82,39,0,109,25,1,0,0,0,110,111,3,78,37,0,111,112,1,0,0,0,
+	112,113,6,11,1,0,113,27,1,0,0,0,114,115,3,80,38,0,115,116,1,0,0,0,116,117,
+	6,12,1,0,117,29,1,0,0,0,118,119,5,91,0,0,119,120,5,94,0,0,120,121,1,0,0,
+	0,121,122,6,13,2,0,122,31,1,0,0,0,123,124,5,91,0,0,124,125,1,0,0,0,125,
+	126,6,14,2,0,126,33,1,0,0,0,127,128,5,125,0,0,128,129,1,0,0,0,129,130,6,
+	15,3,0,130,35,1,0,0,0,131,133,7,1,0,0,132,131,1,0,0,0,133,134,1,0,0,0,134,
+	132,1,0,0,0,134,135,1,0,0,0,135,37,1,0,0,0,136,137,5,44,0,0,137,39,1,0,
+	0,0,138,139,5,125,0,0,139,140,1,0,0,0,140,141,6,18,3,0,141,41,1,0,0,0,142,
+	150,3,44,20,0,143,150,3,46,21,0,144,150,3,48,22,0,145,150,3,50,23,0,146,
+	150,3,52,24,0,147,150,3,54,25,0,148,150,3,56,26,0,149,142,1,0,0,0,149,143,
+	1,0,0,0,149,144,1,0,0,0,149,145,1,0,0,0,149,146,1,0,0,0,149,147,1,0,0,0,
+	149,148,1,0,0,0,150,43,1,0,0,0,151,153,5,76,0,0,152,154,7,2,0,0,153,152,
+	1,0,0,0,153,154,1,0,0,0,154,45,1,0,0,0,155,157,5,77,0,0,156,158,7,3,0,0,
+	157,156,1,0,0,0,157,158,1,0,0,0,158,47,1,0,0,0,159,161,5,78,0,0,160,162,
+	7,4,0,0,161,160,1,0,0,0,161,162,1,0,0,0,162,49,1,0,0,0,163,165,5,80,0,0,
+	164,166,7,5,0,0,165,164,1,0,0,0,165,166,1,0,0,0,166,51,1,0,0,0,167,169,
+	5,90,0,0,168,170,7,6,0,0,169,168,1,0,0,0,169,170,1,0,0,0,170,53,1,0,0,0,
+	171,173,5,83,0,0,172,174,7,7,0,0,173,172,1,0,0,0,173,174,1,0,0,0,174,55,
+	1,0,0,0,175,177,5,67,0,0,176,178,7,8,0,0,177,176,1,0,0,0,177,178,1,0,0,
+	0,178,57,1,0,0,0,179,180,5,73,0,0,180,181,5,115,0,0,181,183,1,0,0,0,182,
+	184,7,9,0,0,183,182,1,0,0,0,184,185,1,0,0,0,185,183,1,0,0,0,185,186,1,0,
+	0,0,186,59,1,0,0,0,187,188,3,84,40,0,188,61,1,0,0,0,189,190,3,82,39,0,190,
+	63,1,0,0,0,191,192,3,78,37,0,192,193,1,0,0,0,193,194,6,30,1,0,194,65,1,
+	0,0,0,195,196,3,80,38,0,196,197,1,0,0,0,197,198,6,31,1,0,198,67,1,0,0,0,
+	199,200,5,91,0,0,200,201,5,94,0,0,201,202,1,0,0,0,202,203,6,32,2,0,203,
+	69,1,0,0,0,204,205,5,91,0,0,205,206,1,0,0,0,206,207,6,33,2,0,207,71,1,0,
+	0,0,208,209,5,93,0,0,209,210,1,0,0,0,210,211,6,34,3,0,211,73,1,0,0,0,212,
+	213,5,45,0,0,213,75,1,0,0,0,214,215,8,10,0,0,215,77,1,0,0,0,216,217,5,92,
+	0,0,217,218,5,112,0,0,218,219,5,123,0,0,219,79,1,0,0,0,220,221,5,92,0,0,
+	221,222,5,80,0,0,222,223,5,123,0,0,223,81,1,0,0,0,224,225,5,92,0,0,225,
+	226,7,11,0,0,226,83,1,0,0,0,227,228,5,92,0,0,228,229,7,12,0,0,229,85,1,
+	0,0,0,15,0,1,2,3,134,149,153,157,161,165,169,173,177,183,185,4,5,1,0,5,
+	2,0,5,3,0,4,0,0];
+
+	private static __ATN: ATN;
 	public static get _ATN(): ATN {
 		if (!regexLexer.__ATN) {
-			regexLexer.__ATN = new ATNDeserializer().deserialize(Utils.toCharArray(regexLexer._serializedATN));
+			regexLexer.__ATN = new ATNDeserializer().deserialize(regexLexer._serializedATN);
 		}
 
 		return regexLexer.__ATN;
 	}
 
-}
 
+	static DecisionsToDFA = regexLexer._ATN.decisionToState.map( (ds: DecisionState, index: number) => new DFA(ds, index) );
+}

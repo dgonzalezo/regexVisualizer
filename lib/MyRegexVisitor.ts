@@ -1,4 +1,5 @@
 import { Graph } from './Graph';
+import { Node } from './Node';
 
 export class MyRegexVisitor implements regexParserVisitor<any>{
 
@@ -9,9 +10,9 @@ export class MyRegexVisitor implements regexParserVisitor<any>{
     }
     visitRegExp(ctx: RegExpContext){
 
-        let branches = [];
+        let branches: Node[][] = [];
 
-        for(let i = 0; i<ctx.branch().length; i++){
+        for(let i = 0; i<ctx.branch_list().length; i++){
             let branch = this.visitBranch(ctx.branch(i));
 
             for(let j=0; j<branch.length; j++){
@@ -29,8 +30,8 @@ export class MyRegexVisitor implements regexParserVisitor<any>{
 
     visitBranch(ctx: BranchContext){
 
-        let pieceList = [];
-        for(let i=0; i <ctx.piece().length; i++) {
+        let pieceList:Node[] = [];
+        for(let i=0; i <ctx.piece_list().length; i++) {
             let pieceObject = this.visitPiece(ctx.piece(i));
 
             // @ts-ignore
@@ -44,7 +45,7 @@ export class MyRegexVisitor implements regexParserVisitor<any>{
         // This will return an object with attributes "value/text" and  "quantifier" to the visitBranch method
 
         let atomText = this.visitAtom(ctx.atom());
-        let quantifierText = ctx.quantifier()?.text || undefined;
+        let quantifierText = ctx.quantifier()?.getText() || undefined;
 
         return this.graph.addNode(atomText, quantifierText);
 
@@ -59,7 +60,7 @@ export class MyRegexVisitor implements regexParserVisitor<any>{
         if(ctx.LPAREN()!=null){
             //this.visitRegExp(ctx.regExp()!)
         }
-        let atom = ctx.text;
+        let atom = ctx.getText();
         return atom;
 
 
@@ -85,9 +86,9 @@ export class MyRegexVisitor implements regexParserVisitor<any>{
 
 }
 
-import {regexParserVisitor} from "@/lib/regexParserVisitor";
-import {ErrorNode, ParseTree, RuleNode} from "antlr4ts/tree";
-import {TerminalNode} from "antlr4ts/tree/TerminalNode";
+import regexParserVisitor from "./regexParserVisitor";
+import {ErrorNode, ParseTree, RuleNode} from "antlr4/";
+import {TerminalNode} from "antlr4";
 
 
 import {
@@ -97,4 +98,4 @@ import {
     PieceContext,
     RegExpContext,
     RootContext
-} from "@/lib/regexParser";
+} from "./regexParser";
